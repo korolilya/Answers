@@ -55,3 +55,42 @@ SQL используется в реляционных базах данных, 
 
 ## Вопрос №9
 ### В базе данных MS SQL Server есть продукты и категории. Одному продукту может соответствовать много категорий, в одной категории может быть много продуктов. Напишите SQL запрос для выбора всех пар «Имя продукта – Имя категории». Если у продукта нет категорий, то его имя все равно должно выводиться.
+
+1. Создадим таблицы Category, Products и ProdCat.
+
+    CREATE TABLE Category (
+      id INT PRIMARY KEY,
+      name NVARCHAR(255) NOT NULL
+    );
+
+    INSERT INTO Category 
+    VALUES  (1, 'Еда'),
+            (2, 'Личная гигиена');
+   
+    CREATE TABLE Products (
+      id int PRIMARY KEY,
+      name varchar(255) NOT NULL,
+    );
+
+    INSERT INTO Products
+    VALUES  (1, 'Хлеб'),
+            (2, 'Молоко'),
+            (3, 'Шампунь'),
+            (4, 'Книга');
+            
+    CREATE TABLE ProdCat (
+      products_id  INT not null,
+      category_id INT not null
+    );
+
+    INSERT INTO ProdCat
+    VALUES  (1, 1),
+            (2, 1),
+            (3, 2);
+            
+2. Запрос
+    select products.name [Имя продукта], category.name [Имя категории]
+    from Products
+    left join ProdCat on products.id = prodcat.products_id
+    inner join Category on category.id = prodcat.category_id
+    order by prod.name
