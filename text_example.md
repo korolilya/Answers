@@ -89,6 +89,7 @@ SQL используется в реляционных базах данных, 
             (3, 2);
             
 2. Запрос
+    
     select products.name [Имя продукта], category.name [Имя категории]
     from Products
     left join ProdCat on products.id = prodcat.products_id
