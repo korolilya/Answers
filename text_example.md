@@ -90,7 +90,7 @@ SQL используется в реляционных базах данных, 
             
 2. Запрос
     
-    select products.name [Имя продукта], category.name [Имя категории]
+    select products.name, category.name
     from Products
     left join ProdCat on products.id = prodcat.products_id
     inner join Category on category.id = prodcat.category_id
